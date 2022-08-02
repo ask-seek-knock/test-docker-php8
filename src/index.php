@@ -48,7 +48,7 @@ if (!strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox')) {
     exit;
 }
 
-require_auth();
+//require_auth();
 // start the session
 if (Config::get('session_enable')) {
     session_start();
