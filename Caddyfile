@@ -1,5 +1,6 @@
-php.889664.xyz
+https://php.889664.xyz {
 root * /var/www/html
+file_server
 
 header {
     X-Robots-Tag none
@@ -7,4 +8,8 @@ header {
     X-Frame-Options DENY
     Referrer-Policy no-referrer-when-downgrade
 }
+}
 
+http://php.889664.xyz {
+  redir https://{host}{uri}
+}
