@@ -1,22 +1,36 @@
-#
-# Dockerfile for shadowsocks-libev
-#
+FROM ghcr.io/alastairhm/alpine-lighttpd:latest
 
-FROM alpine
+RUN apk --update add \
+    php-common \
+    php-iconv \
+    php-json \
+    php-gd \
+    php-curl \
+    php-xml \
+    php-simplexml \
+    php-pgsql \
+    php-imap \
+    php-cgi \
+    fcgi \
+    php-pdo \
+    php-pdo_pgsql \
+    php-soap \
+    php-xmlrpc \
+    php-posix \
+    php-gettext \
+    php-ldap \
+    php-ctype \
+    php-session \
+    unzip \
+    php-dom && \
+    rm -rf /var/cache/apk/*
 
-RUN set -ex \
- # Build environment setup
- && apk update \
- && apk add --no-cache \
-      php \
-      php-cgi \
-      php-session \
-      php-curl \
-      lighttpd \
-      openssl \
-      unzip \
- && rm -rf /var/cache/apk/*
+ADD lighttpd.conf /etc/lighttpd/lighttpd.conf
+RUN mkdir -p /run/lighttpd/ && \
+    chown www-data. /run/lighttpd/
 
-COPY ./entrypoint.sh ./lighttpd.conf ./src.zip /
+EXPOSE 80
+VOLUME /var/www
 
-CMD /entrypoint.sh
+CMD php-fpm -D && lighttpd -D -f /etc/lighttpd/lighttpd.conf
+
