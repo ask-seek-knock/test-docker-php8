@@ -1,6 +1,0 @@
-php_value error_reporting 1
-
-RewriteEngine On
-RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
-
