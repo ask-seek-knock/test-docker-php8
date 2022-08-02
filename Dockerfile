@@ -17,8 +17,6 @@ RUN set -ex \
       unzip \
  && rm -rf /var/cache/apk/*
 
-EXPOSE 80 443
-
-COPY ./entrypoint.sh ./src.zip /
+COPY ./entrypoint.sh ./lighttpd.conf ./src.zip /
 
 CMD /entrypoint.sh
