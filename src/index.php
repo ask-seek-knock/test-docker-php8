@@ -28,7 +28,7 @@ function _is_peer($ip) {
     $ips = array('219.144.25', '240e:358:5', '2409:8a70:', '2409:8a55:', '112.46.68.', '2406:840:f', '124.89.86.', '111.20.101', '124.23.133.', '127.0.0.1', );
     return in_array($ip, $ips);
 }
-
+/*
 if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
     if (!_is_peer(substr($_SERVER['HTTP_CF_CONNECTING_IP'], 0, 10))) {
         echo 'cf ip';
@@ -42,6 +42,7 @@ if (isset($_SERVER['HTTP_CF_CONNECTING_IP'])) {
         exit;
     }
 }
+ */
 
 if (!strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox')) {
         //header('HTTP/1.1 400 Bad Request');
@@ -49,7 +50,7 @@ if (!strpos($_SERVER['HTTP_USER_AGENT'], 'Firefox')) {
     exit;
 }
 
-//require_auth();
+require_auth();
 // start the session
 if (Config::get('session_enable')) {
     session_start();
